@@ -1,33 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int power(int num, int p) {
-  int res = num;
-  for(int i = 1; i < p; i++) {
-    num *= res;
-  }
-  return num;
+#include "test.h"
+size_t intlen(int n){
+    if (!n){
+        return 1;
+    }
+    int len = 0;
+    while (n){
+        ++len;
+        n /= 10;
+    }
+    return len;
 }
 
-void my_itoa(int num)
-{
-  int kek = num;
-  int length = 0;
-  while(kek > 1) {
-    kek = kek / 10;
-    length++;
-  }
-  length++;
-  char *str = malloc(length * sizeof(char));
-  //printf("%d", num / power(10, length - 1));
-  for(int i = 0; i < length - 1; i++)
-  {
-    printf("%d", num / power(10, i));
-  }
-}
-
-int main() {
-  char *str;
-  my_itoa(123);
-  return 0;
+char* my_itoa(int n){
+    int neg = (n < 0);
+    if (neg){
+        n = -n;
+    }
+    size_t nlen = intlen(n);
+    nlen += neg;
+    char *cstr = malloc(nlen + 1);
+    if (neg){
+        cstr[0] = '-';
+    }
+    cstr[nlen] = '\0';
+    int i;
+    for (i = nlen - 1; i >= 0 + neg; --i){
+        cstr[i] = ((n % 10) + '0');
+        n /= 10;
+    }
+    return cstr;
 }
