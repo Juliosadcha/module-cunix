@@ -37,6 +37,7 @@ void list_push(node_t *head, void *data){
     tmp->next = (node_t*) malloc(sizeof(node_t));
     tmp->next->data = data;
     tmp->next->next = NULL;
+
 }
 
 void list_unshift(node_t **head, void *data){
@@ -47,17 +48,18 @@ void list_unshift(node_t **head, void *data){
 }
 
 void *list_pop(node_t **head){
-    int ret_val = -1;
+    void *ret_val = (void*)-1;
 
     node_t *prev = NULL;
     if (*head == NULL)
         return (void *)-1;
     prev = (*head)->next;
     ret_val = (*head)->data;
+    free((*head)->data);
     free(*head);
     *head = prev;
 
-    return (void *)(&ret_val);
+    return ret_val;
 }
 
 
@@ -79,9 +81,12 @@ void *list_shift(node_t **head){
     }
 
     if (pBwd == NULL) {
+        free((*head)->data);
+        free((*head)->next);
         free(*head);
         *head = NULL;
     } else {
+        free(pFwd->data);
         free(pFwd->next);
         pBwd->next = NULL;
     }
@@ -105,6 +110,7 @@ void *list_remove(node_t **head, int pos){
         void *d = elm->data;
 
         prev->next = elm->next;
+        free(elm->data);
         free(elm);
         return d;
     }
