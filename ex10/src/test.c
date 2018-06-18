@@ -80,7 +80,7 @@ void test_n_queens(int n) {
   for (int i = 0; i < n; i++)
     table[i] = malloc(n * sizeof(Cell));
 
-  table[0][3].figure = 'Q';
+  table[0][0].figure = 'Q';
 
   place_queens(table, n);
 
