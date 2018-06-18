@@ -2,7 +2,8 @@
 
 int my_strcmp(char *s1, char *s2)
 {
-  int flag = 0;
+  int flag;
+  flag = 0;
 
   while(*s1 != '\0' || *s2 != '\0'){
     if(*s1 > *s2) {
@@ -18,9 +19,11 @@ int my_strcmp(char *s1, char *s2)
         flag = 0;
       }
     }
+
     s1++;
     s2++;
   }
 
   return flag;
 }
+
