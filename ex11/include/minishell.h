@@ -1,6 +1,8 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 #include <stdlib.h>
+#include "hash.h"
+#include "linked_list.h"
 /*                                    Hints
  * Use "$_>" for prompt
  *
