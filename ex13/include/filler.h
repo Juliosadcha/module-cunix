@@ -1,6 +1,12 @@
 #ifndef _FILLER_H_
 #define _FILLER_H_
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdbool.h>
 
 typedef struct  map_s
 {
@@ -46,6 +52,7 @@ typedef struct  filler_s
 /*Functions for reading*/
 req_t*          read_request(filler_t *filler);
 void            read_input(filler_t* filler);
+int             find_size(char res[32], char *buf, int start_pos);
 
 /*Functions for parsing*/
 req_t*          parse_all(char *all);
@@ -65,4 +72,11 @@ void            create_filler(filler_t *filler);
 void            destroy_filler(filler_t *filler);
 void            create_req(req_t *req);
 void            destroy_req(req_t *req);
+
+/*Check*/
+int             check_connection(map_t * map, elem_t *new_elem, pos_t p, char symbol);
+int             check_free_space(map_t *map, elem_t *new_elem, pos_t p);
+
+void            read_matrix(char **matrix, char *array, int pos, int w, int h);
+
 #endif // _FILLER_H_
