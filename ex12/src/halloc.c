@@ -40,7 +40,7 @@ block chunk_find(size_t s, block *last)
 
 void merge_next(block c)
 {
-  c->size = c->size + c->next->size + sizeof(struct block_meta);
+  c->size += c->next->size + sizeof(struct block_meta);
   c->next = c->next->next;
 }
 
